@@ -10,12 +10,12 @@ module MemcachePod
     end
 
     def get(key, options=nil)
-      if(@memory_pool.has_key?(key))
+      remove_expires()
+      if @memory_pool.has_key?(key)
         return @memory_pool[key].body
       else
         return nil
       end
-      remove_expires()
     end
 
     def set(key, value, ttl, options=nil)
@@ -41,7 +41,7 @@ module MemcachePod
     def remove_expires()
       @memory_pool.each_key{ |key|
         entry = @memory_pool[key]
-        if not entry.reference?()
+        if not entry.reference?
           if entry.expired?
             @memory_pool.delete(key)
           end

@@ -40,5 +40,35 @@ describe 'Basic' do
       expect(@pod.get('c')).to be               nil      
     end
   end
+
+  describe 'using ttl' do
+    before do
+      @pod  = MemcachePod::Client.new(["localhost:11211"])
+      @val1 = "val1"
+      @val2 = "val2"
+      @val3 = "val3"
+    end
+
+    it "should" do
+      @pod.set('2',@val1,2)
+      expect(@pod.get('2')).to                  eq(@val1)
+      @pod.set('5',@val2,5)
+      expect(@pod.get('5')).to                  eq(@val2)
+      @pod.set('10',@val3,10)
+      expect(@pod.get('10')).to                 eq(@val3)
+
+      sleep(3.0)
+      expect(@pod.get('2')).to be               nil
+      expect(@pod.get('5')).to                  eq(@val2)
+      sleep(3.0)
+      expect(@pod.get('2')).to be               nil
+      expect(@pod.get('5')).to be               nil
+      expect(@pod.get('10')).to                 eq(@val3)
+      expect(@pod.get('A')).to be               nil
+      expect(@pod.get('B')).to be               nil
+      expect(@pod.get('C')).to be               nil
+    end
+  end
+  
 end
 
