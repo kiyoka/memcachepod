@@ -95,5 +95,26 @@ describe 'Basic' do
     end
   end
 
-end
+  describe 'get_status' do
+    before do
+      @pod  = MemcachePod::Client.new(["localhost:11211"])
+      @val1 = "val1"
+      @val2 = "val2"
+      @val3 = "val3"
+      @val4 = "val4"
+    end
 
+    it "should" do
+      @pod.set('1',@val1,1)
+      @pod.set('2',@val2,2)
+      expect(@pod.get('1')).to                 eq(@val1)
+      @pod.set('4',@val3,4)
+      @pod.set('0',@val4)
+      expect(@pod.get_status.size()).to        eq(4)
+      sleep(2.5)
+      expect(@pod.get('2')).to be              nil
+      expect(@pod.get_status.size()).to        eq(2)
+    end
+  end
+  
+end

@@ -40,11 +40,11 @@ module MemcachePod
       if 0 < @expires_in
         exp = @expires_in - Time.now.to_i
       end
-      return [
-        'reference'  => @refernece,
+      return {
+        'reference'  => @reference,
         'expires_in' => exp,
         'bodysize'   => @body.size
-      ]
+      }
     end
 
     private

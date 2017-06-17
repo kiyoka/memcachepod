@@ -31,8 +31,8 @@ module MemcachePod
     end
 
     def get_status
-      return @memory_pool.map {|entry|
-        entry.get_status
+      return @memory_pool.map {|k,v|
+        v.get_status
       }
     end
     

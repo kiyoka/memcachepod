@@ -3,6 +3,7 @@ $TESTING = true
 require 'bundler/setup'
 require 'logger'
 require 'rspec'
+require 'pp'
 require 'simplecov'
 
 SimpleCov.start
