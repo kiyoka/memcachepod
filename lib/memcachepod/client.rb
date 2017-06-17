@@ -13,8 +13,12 @@ module MemcachePod
     # This class aims to keep compatiblity ather memcache client.
     #
     def initialize(servers=nil, options={})
-      # servers is dummy argument
       @options = Hash.new
+
+      @options[:expires_in] = 0
+      @options[:threadsafe] = true
+      @options[:namespace]  = ''
+      
       if options[:expires_in]
         @options[:expires_in] = options[:expires_in]
       end

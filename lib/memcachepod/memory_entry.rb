@@ -6,8 +6,6 @@ require 'date'
 module MemcachePod
   class MemoryEntry
 
-    attr_reader :body
-
     def initialize(body,ttl)
       @reference = false
       @body = body
@@ -19,8 +17,9 @@ module MemcachePod
       @expires_in = expires_in(ttl)
     end
 
-    def referenced()
+    def body()
       @reference = true
+      return @body
     end
 
     def reference?()
