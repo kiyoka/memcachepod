@@ -18,7 +18,7 @@ module MemcachePod
       end
     end
 
-    def set(key, value, ttl, options=nil)
+    def set(key, value, ttl=0, options=nil)
       if(@memory_pool.has_key?(key))
         @memory_pool[key].update(value,ttl)
       else

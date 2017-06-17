@@ -47,6 +47,7 @@ describe 'Basic' do
       @val1 = "val1"
       @val2 = "val2"
       @val3 = "val3"
+      @val4 = "val4"
     end
 
     it "should" do
@@ -54,8 +55,11 @@ describe 'Basic' do
       expect(@pod.get('2')).to                  eq(@val1)
       @pod.set('5',@val2,5)
       expect(@pod.get('5')).to                  eq(@val2)
-      @pod.set('10',@val3,10)
-      expect(@pod.get('10')).to                 eq(@val3)
+      @pod.set('7',@val3,7)
+      expect(@pod.get('7')).to                  eq(@val3)
+      expect(@pod.get('7')).to                  eq(@val3)
+      @pod.set('0',@val4)
+      expect(@pod.get('0')).to                  eq(@val4)
 
       sleep(3.0)
       expect(@pod.get('2')).to be               nil
@@ -63,12 +67,14 @@ describe 'Basic' do
       sleep(3.0)
       expect(@pod.get('2')).to be               nil
       expect(@pod.get('5')).to be               nil
-      expect(@pod.get('10')).to                 eq(@val3)
+      expect(@pod.get('7')).to                  eq(@val3)
       expect(@pod.get('A')).to be               nil
       expect(@pod.get('B')).to be               nil
       expect(@pod.get('C')).to be               nil
+      sleep(5.0)
+      expect(@pod.get('0')).to                  eq(@val4)
     end
   end
-  
+
 end
 

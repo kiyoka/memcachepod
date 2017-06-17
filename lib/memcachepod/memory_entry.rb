@@ -28,23 +28,34 @@ module MemcachePod
     end
 
     def expired?()
-      now = Time.now.to_i #second
-      return @expires_in < now
+      if 0 < @expires_in
+        now = Time.now.to_i #second
+        return @expires_in < now
+      else
+        return false
+      end
     end
 
     def get_status
+      exp = 0
+      if 0 < @expires_in
+        exp = @expires_in - Time.now.to_i
+      end
       return [
-        'reference' => @refernece,
-        'expires_in' => @expires_in - Time.now.to_i,
-        'bodysize' => @body.size
+        'reference'  => @refernece,
+        'expires_in' => exp,
+        'bodysize'   => @body.size
       ]
     end
 
     private
     
     def expires_in(ttl)
-      now = Time.now.to_i #second
-      return now + ttl
+      if 0 < ttl
+        now = Time.now.to_i #second
+        return now + ttl
+      end
+      return 0
     end
 
   end
