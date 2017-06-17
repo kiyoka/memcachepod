@@ -19,13 +19,13 @@ module MemcachePod
       @options[:threadsafe] = true
       @options[:namespace]  = ''
       
-      if options[:expires_in]
+      if options.has_key?(:expires_in)
         @options[:expires_in] = options[:expires_in]
       end
-      if options[:threadsafe]
+      if options.has_key?(:threadsafe)
         @options[:threadsafe] = options[:threadsafe]
       end
-      if options[:namespace]
+      if options.has_key?(:namespace)
         @options[:namespace]  = options[:namespace]
       end
 
@@ -73,6 +73,10 @@ module MemcachePod
 
     alias_method :flush_all, :flush
 
+    def get_options
+      return @options
+    end
+
     private
 
     def validate_key(key)
@@ -89,10 +93,8 @@ module MemcachePod
     def ttl_or_default(ttl)
       if ttl
         ttl
-      elsif @options.has_key?(:expires_in)
-        @options[:expires_in].to_i
       else
-        0
+        @options[:expires_in].to_i
       end
     end
     
