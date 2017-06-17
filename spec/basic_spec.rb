@@ -76,5 +76,24 @@ describe 'Basic' do
     end
   end
 
+  describe 'updating data' do
+    before do
+      @pod  = MemcachePod::Client.new(["localhost:11211"])
+      @val1 = "val1"
+    end
+
+    it "should" do
+      @pod.set('2',@val1)
+      expect(@pod.get('2')).to                  eq(@val1)
+      sleep(3.0)
+      expect(@pod.get('2')).to                  eq(@val1) # never expire
+
+      @pod.set('2',@val1, 2)
+      expect(@pod.get('2')).to                  eq(@val1)
+      sleep(3.0)
+      expect(@pod.get('2')).to be               nil       # expired in 3 sec.
+    end
+  end
+
 end
 
