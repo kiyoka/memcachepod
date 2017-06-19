@@ -111,7 +111,7 @@ describe 'Basic' do
       @pod.set('4',@val3,4)
       @pod.set('0',@val4)
       expect(@pod.get_status.size()).to        eq(4)
-      sleep(2.5)
+      sleep(3.0)
       expect(@pod.get('2')).to be              nil
       expect(@pod.get_status.size()).to        eq(2)
     end
