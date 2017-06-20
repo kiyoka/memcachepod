@@ -108,7 +108,7 @@ describe 'Basic' do
       @pod.set('1',@val1,1)
       @pod.set('2',@val2,2)
       expect(@pod.get('1')).to                 eq(@val1)
-      @pod.set('4',@val3,4)
+      @pod.set('5',@val3,5)
       @pod.set('0',@val4)
       expect(@pod.get_status.size()).to        eq(4)
       sleep(3.0)

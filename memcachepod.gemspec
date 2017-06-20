@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.license = "MIT"
 
   s.authors = ['Kiyoka Nishiyama']
-  s.description = s.summary = ''
+  s.description = s.summary = 'In-process caching library that provide memcached compatible interface.'
   s.email = ['kiyoka@sumibi.org']
   s.files = Dir.glob('lib/**/*') + [
     'LICENSE',
