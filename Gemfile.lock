@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    memcachepod (0.0.1)
+    memcachepod (0.0.2)
 
 GEM
   remote: https://rubygems.org/
