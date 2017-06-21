@@ -15,6 +15,5 @@ Gem::Specification.new do |s|
   ]
   s.homepage = 'https://github.com/kiyoka/memcachepod'
   s.rdoc_options = ["--charset=UTF-8"]
-  s.add_development_dependency 'rake'
   s.add_development_dependency 'rdoc'
 end
