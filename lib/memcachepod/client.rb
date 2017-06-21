@@ -18,6 +18,7 @@ module MemcachePod
       @options[:expires_in] = 0
       @options[:threadsafe] = true
       @options[:namespace]  = ''
+      @options[:max_memory]  = 64*1024*1024 # same as memcached
       
       if options.has_key?(:expires_in)
         @options[:expires_in] = options[:expires_in]
@@ -28,8 +29,11 @@ module MemcachePod
       if options.has_key?(:namespace)
         @options[:namespace]  = options[:namespace]
       end
+      if options.has_key?(:max_memory)
+        @options[:max_memory]  = options[:max_memory]
+      end
 
-      @memory = Memory.new
+      @memory = Memory.new(@options[:max_memory])
     end
 
     def get(key, options=nil)
@@ -75,6 +79,10 @@ module MemcachePod
 
     def get_options
       return @options
+    end
+
+    def get_memory_usage
+      return @memory.get_memory_usage
     end
 
     private
