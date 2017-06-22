@@ -56,7 +56,7 @@ module MemcachePod
     end
 
     def delete(key)
-      raise NotImplementedError.new("not implemented delete()")
+      @memory.delete(key)
     end
 
     def append(key, value)
@@ -67,6 +67,34 @@ module MemcachePod
       raise NotImplementedError.new("not implemented prepend()")
     end
 
+    def incr(key, amt=1, ttl=nil, default=nil)
+      raise NotImplementedError.new("not implemented incr()")
+    end
+
+    def decr(key, amt=1, ttl=nil, default=nil)
+      raise NotImplementedError.new("not implemented decr()")
+    end
+
+    def touch(key, ttl=nil)
+      raise NotImplementedError.new("not implemented touch()")
+    end
+
+    def stats(type=nil)
+      raise NotImplementedError.new("not implemented stats()")
+    end
+
+    def reset_stats
+      raise NotImplementedError.new("not implemented reset_stats()")
+    end
+
+    def alive!
+      raise NotImplementedError.new("not implemented alive!()")      
+    end
+
+    def version
+      { "localhost" => MemcachePod::VERSION }
+    end
+    
     def flush(delay=0)
       @memory.flush()
     end

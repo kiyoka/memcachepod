@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'memcachepod/version'
 require 'memcachepod/memory_entry'
 require 'memcachepod/memory'
 require 'memcachepod/client'

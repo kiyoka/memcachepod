@@ -28,6 +28,7 @@ describe 'Basic' do
     end
 
     it "should" do
+      expect(@pod.version['localhost']).to      eq(MemcachePod::VERSION)
       @pod.flush
       @pod.set('a',@val1)
       expect(@pod.get('a')).to                  eq(@val1)
@@ -114,6 +115,23 @@ describe 'Basic' do
       sleep(3.0)
       expect(@pod.get('2')).to be              nil
       expect(@pod.get_status.size()).to        eq(2)
+    end
+  end
+
+  describe 'Delete' do
+    before do
+      @pod  = MemcachePod::Client.new(["localhost:11211"])
+      @val1 = "val1"
+      @val2 = "val2"
+    end
+
+    it "should" do
+      @pod.set('1',@val1,1)
+      @pod.set('2',@val2,2)
+      expect(@pod.get('1')).to                 eq(@val1)
+      @pod.delete('1')
+      expect(@pod.get('1')).to be              nil
+      expect(@pod.get('2')).to                 eq(@val2)
     end
   end
   

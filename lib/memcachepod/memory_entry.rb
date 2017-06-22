@@ -22,10 +22,6 @@ module MemcachePod
       return @body
     end
 
-    def reference?()
-      return @refernece
-    end
-
     def expired?()
       if 0 < @expires_in
         now = Time.now.to_i #second

@@ -27,6 +27,12 @@ module MemcachePod
       end
     end
 
+    def delete(key)
+      if(@memory_pool.has_key?(key))
+        @memory_pool.delete(key)
+      end
+    end
+
     def flush()
       @memory_pool = Hash.new
     end
